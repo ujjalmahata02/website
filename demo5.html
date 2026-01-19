@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ujjal Singh Mahata | Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<!-- GOOGLE FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#10bb96;
+  --card:#c4121d;
+  --accent:#4f7cff;
+  --text:#ffffff;
+  --muted:#b8c1ec;
+}
+
+/* ===== GLOBAL ===== */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);}
+section{padding:100px 8%;}
+h2{text-align:center;margin-bottom:50px;font-size:2.4rem;}
+a{text-decoration:none;color:inherit;}
+
+/* ===== NAVBAR ===== */
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:16px 8%;
+  background:rgba(11,15,26,0.85);
+  backdrop-filter:blur(8px);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:1000;
+}
+.logo{font-weight:700;font-size:1.4rem;color:var(--accent);}
+nav a{margin-left:24px;color:var(--muted);transition:.3s;}
+nav a:hover{color:var(--accent);}
+
+/* ===== HERO ===== */
+.hero{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:40px;
+  align-items:center;
+}
+.hero-text p:first-child{color:var(--accent);}
+.hero-text h1{font-size:3.5rem;margin:15px 0;}
+.hero-text span{color:var(--accent);}
+.hero-text p{color:var(--muted);max-width:520px;}
+.hero-btn{
+  margin-top:25px;
+  display:inline-block;
+  padding:14px 34px;
+  background:linear-gradient(135deg,var(--accent),#00f0ff);
+  color:#000;
+  font-weight:600;
+  border-radius:30px;
+  transition:.3s;
+}
+.hero-btn:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 20px rgba(187, 20, 117, 0.6);
+}
+
+/* Hero Image */
+
+.hero-img img{
+  width:400px;
+  height:400px;
+  object-fit: cover;   /* 👈 FIX */
+  border-radius:18px;
+  border:3px solid var(--accent);
+  box-shadow:0 0 40px rgba(255, 79, 196, 0.45);
+}
+.hero-img img:hover{transform:translateY(-10px);}
+
+/* ===== REVEAL ANIMATION ===== */
+.reveal{
+  opacity:0;
+  transform:translateY(50px);
+  transition:all .9s ease;
+}
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ===== ABOUT ===== */
+.about-card{
+  max-width:900px;
+  margin:auto;
+  background:var(--card);
+  padding:45px;
+  border-radius:22px;
+  text-align:center;
+  color:var(--muted);
+}
+
+/* ===== SKILLS ===== */
+.skills{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:25px;
+}
+.skill{
+  background:var(--card);
+  padding:28px;
+  border-radius:18px;
+  text-align:center;
+  transition:.3s;
+  color:var(--muted);
+}
+.skill:hover{transform:translateY(-6px);border:1px solid var(--accent);}
+
+/* ===== PROJECTS ===== */
+.projects{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:25px;
+}
+.project{
+  background:var(--card);
+  padding:30px;
+  border-radius:18px;
+  color:var(--muted);
+  transition:.3s;
+}
+.project:hover{border:1px solid var(--accent);}
+
+/* ===== HOBBIES ===== */
+.hobbies{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:30px;
+}
+.hobby-card{
+  background:var(--card);
+  padding:25px;
+  border-radius:18px;
+  text-align:center;
+  transition:.3s;
+}
+.hobby-card:hover{
+  transform:translateY(-6px);
+  border:1px solid var(--accent);
+  box-shadow:0 0 20px rgba(79,124,255,0.3);
+}
+.hobby-card img{
+  width:120px;height:120px;object-fit:cover;border-radius:12px;margin-bottom:15px;
+}
+.hobby-card h3{color:var(--accent);margin-bottom:10px;}
+/* ===== CERTIFICATES ===== */
+.certificates{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
+}
+
+.certificate{
+  background:var(--card);
+  padding:15px;
+  border-radius:15px;
+  text-align:center;
+  transition:0.3s;
+}
+
+.certificate:hover{
+  transform:scale(1.05);
+  border:1px solid var(--accent);
+  box-shadow:0 0 25px rgba(79,124,255,0.4);
+}
+
+.certificate img{
+  width:100%;
+  height:180px; /* same height for all */
+  border-radius:10px;
+  object-fit:cover; /* crop to fill */
+}
+
+.certificate p{
+  margin-top:10px;
+  font-size:0.9rem;
+  color:var(--muted);
+}
+#books-content .certificate a{
+  display:inline-block;
+  margin-top:8px;
+  padding:6px 14px;
+  background:var(--accent);
+  color:#000;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:600;
+  transition:.3s;
+}
+#books-content .certificate a:hover{
+  background:#00f0ff;
+}
+
+
+/* ===== CONTACT ===== */
+.contact{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:35px;
+}
+input,textarea{
+  width:100%;
+  padding:15px;
+  background:#0e1430;
+  border:none;
+  border-radius:12px;
+  margin-bottom:16px;
+  color:#fff;
+}
+button{
+  width:100%;
+  padding:15px;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(135deg,var(--accent),#00f0ff);
+  font-weight:600;
+  cursor:pointer;
+  transition:.3s;
+}
+button:hover{transform:scale(1.05);box-shadow:0 0 20px rgba(79,124,255,.5);}
+#form-status{margin-top:10px;color:var(--muted);}
+.socials a{
+  display:block;
+  background:var(--card);
+  padding:16px;
+  border-radius:14px;
+  margin-bottom:16px;
+  text-align:center;
+  color:var(--muted);
+  transition:.3s;
+}
+.socials a:hover{background:var(--accent);color:#000;}
+
+footer{
+  text-align:center;
+  padding:25px;
+  background:#060812;
+  color:#8a92cc;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;text-align:center;}
+  .contact{grid-template-columns:1fr;}
+  .hero-text h1{font-size:2.6rem;}
+}
+:root{
+  /* Default Dark Mode */
+  --bg:#0b0f1a;
+  --text:#ffffff;
+  --card:#12172a;
+  --accent:#4f7cff;
+  --muted:#b8c1ec;
+
+  /* Section specific backgrounds */
+  --about-bg:#12172a;
+  --skills-bg:#1a1f2e;
+  --projects-bg:#0f1320;
+  --hobbies-bg:#161b2a;
+  --certificates-bg:#12172a;
+  --private-bg:#1b1f30;
+  --poetry-bg:#1e2635;
+  --books-bg:#0f111f;
+}
+
+/* Apply section backgrounds */
+#about{ background: var(--about-bg);}
+#skills{ background: var(--skills-bg);}
+#projects{ background: var(--projects-bg);}
+#hobbies{ background: var(--hobbies-bg);}
+#certificates{ background: var(--certificates-bg);}
+#private{ background: var(--private-bg);}
+#poetry{ background: var(--poetry-bg);}
+#books{ background: var(--books-bg);}
+
+/* ===== HERO TYPING ANIMATION ===== */
+.typing-text {
+  color: var(--muted); /* text dekhincha */
+  font-size: 1.1rem;
+  margin-top: 10px;
+  border-right: 2px solid var(--accent); /* blinking cursor */
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  animation: blink-cursor 0.7s step-end infinite;
+}
+
+@keyframes blink-cursor {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--accent); }
+}
+
+.logo img {
+  height: 50px;
+  width: auto;
+  cursor: pointer;
+}
+section{
+  padding: 160px 8% !important;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header>
+  <div class="logo">
+    <img src="https://i.postimg.cc/dhPJcQhf/logo.jpg" alt="Ujjal Logo">
+  </div>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#hobbies">Hobbies</a>
+    <a href="#certificates">Certificates</a>
+    <a href="#private">Private Gallery</a>
+    <a href="#contact">Contact</a>
+  </nav>
+ 
+
+<!-- HIDDEN CONTENT AFTER LOGIN -->
+<section id="after-login" style="display:none;">
+  <h2>Welcome Ujjal 👋</h2>
+  <p>You are successfully logged in.</p>
+</section>
+
+ 
+
+
+  <!-- Small Day/Night Toggle Button -->
+  <button id="theme-toggle" style="
+    font-size: 1.1rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background: var(--card);
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 15px;
+    transition: 0.3s;
+  ">
+    🌙
+  </button>
+</header>
+
+
+
+<!-- HERO -->
+<section class="hero reveal">
+  <div class="hero-text">
+  <p>Hello, I'm</p>
+  <h1>Ujjal <span>Singh</span> Mahata</h1>
+  <p class="typing-text"></p> <!-- typing animation will fill this -->
+  <a href="#contact" class="hero-btn">Contact Me</a>
+</div>
+
+
+  <div class="hero-img">
+    <img src="https://i.postimg.cc/BXDdDdps/remove.jpg" alt="Ujjal Photo">
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="reveal">
+  <h2>About Me</h2>
+  <div class="about-card">
+    I am a Computer Engineering student passionate about cybersecurity, ethical hacking, network security, and penetration testing.
+    
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="reveal">
+  <h2>Skills</h2>
+  <div class="skills">
+    <div class="skill">HTML & CSS</div>
+    <div class="skill">Kali Linux</div>
+    <div class="skill">Python</div>
+    <div class="skill">Networking</div>
+    <div class="skill">UI / UX</div>
+    <div class="skill">Git & GitHub</div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="reveal">
+  <h2>Projects</h2>
+  <div class="projects">
+    <div class="project">Fake Email Testing – 2025</div>
+    <div class="project">Cybersecurity Lab Projects</div>
+    <div class="project">Website Security Testing</div>
+  </div>
+</section>
+
+<!-- HOBBIES -->
+<section id="hobbies" class="reveal">
+  <h2>My Hobbies</h2>
+  <div class="hobbies">
+    <div class="hobby-card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCrfWr84gh3rb_CzCGMHOoNWMy8t9lPw397g&s">
+     
+      <h3>Artist</h3>
+      <p>I love making sketches and expressing creativity through art.</p>
+    </div>
+    <div class="hobby-card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUaGiTzY-0zq_jYeyLDPUwMxwGdMTTKnZ7gw&s">
+      <h3>Cricketer</h3>
+      <p>I enjoy playing cricket and team sports.</p>
+    </div>
+    <div class="hobby-card">
+      <img src="https://i.pinimg.com/736x/fd/b4/f9/fdb4f915032fb2121532bad893df6034.jpg">
+      <h3>Poet</h3>
+      <p>I write Shayari and poems in my free time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATES -->
+<section id="certificates" class="reveal">
+  <h2>Achievements & Certificates</h2>
+  <div class="certificates">
+
+    <div class="certificate">
+      <img src="https://i.postimg.cc/SnRT409Q/carieressential.jpg" alt="Career Essentials Cybersecurity">
+      <p>Career Essentials Cybersecurity</p>
+    </div>
+    <div class="certificate">
+      <img src="https://i.postimg.cc/sMtj60w4/cybersecurityfound.jpg" alt="Cybersecurity foundations">
+      <p>Cybersecurity foundations</p>
+    </div>
+    <div class="certificate">
+      <img src="https://i.postimg.cc/XZdVTczB/aws-cloud.jpg" alt="aws cloud for biginners">
+      <p>aws cloud for biginners</p>
+    </div><div class="certificate">
+      <img src="https://i.postimg.cc/BjdSYwMc/ciso.jpg" alt="ciso introduction of cybersecurity ">
+      <p>ciso introduction of cybersecurity</p>
+    </div>
+    <div class="certificate">
+      <img src="https://i.postimg.cc/B8HqdcVz/chatgpt.jpg" alt="AI chatgpt introduction ">
+      <p>AI chatgpt introduction</p>
+    </div>
+
+    <div class="certificate">
+      <img src="https://i.postimg.cc/LJr9C0Ng/adbi.jpg" alt="Introduction to Cybersecurity – ADBI">
+      <p>Introduction to Cybersecurity – ADBI</p>
+    </div>
+
+    <div class="certificate">
+      <img src="https://i.postimg.cc/NKFJthXY/aiuiuxi.jpg" alt="UI/UX Demo Certificate">
+      <p>UI/UX Design using AI</p>
+    </div>
+
+    <div class="certificate">
+      <img src="https://i.postimg.cc/DS0jhVGb/uivertul.jpg" alt="UI/UX Design using Figma">
+      <p>UI/UX Design using Figma</p>
+    </div>
+
+    <div class="certificate">
+      <img src="https://i.postimg.cc/CR5P0y8K/python.jpg" alt="Introduction to Python">
+      <p>Introduction to Python</p>
+    </div>
+
+    <div class="certificate">
+      <img src="https://i.postimg.cc/3kZvtWNW/60day.jpg" alt="60 Days Cybersecurity Challenge">
+      <p>60 Days Cybersecurity Challenge</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- PRIVATE GALLERY -->
+<section id="private" class="reveal">
+  <h2>Private Gallery 🔒</h2>
+
+  <!-- Password Box -->
+  <div class="about-card" id="lock-box">
+    <p>This section is password protected</p><br>
+    <input type="password" id="galleryPassword" placeholder="Enter Password">
+    <br><br>
+    <button onclick="unlockGallery()">Unlock</button>
+    <p id="error-msg" style="color:red;margin-top:10px;"></p>
+  </div>
+
+  <!-- Hidden Gallery -->
+  <div class="certificates" id="gallery-content" style="display:none;">
+    <div class="certificate">
+      <img src="https://i.postimg.cc/v45NRnDf/serene.jpg">
+      <p>Personal Photo 1</p>
+    </div>
+    <div class="certificate">
+      <img src="https://i.postimg.cc/3k2cMGWj/ujjal.jpg">
+      <p>Personal Photo 2 its me ujjal Hi Hi 👋
+Tech  Code  Dreams 💻🚀 </p>
+    </div>
+    <div class="certificate">
+      <img src="https://i.postimg.cc/V5DRCR0F/asish.jpg">
+      <p>Asish Mehata computer engineering student at farwerstern university vloger deticated web developer</p>
+    </div>
+    <div class="certificate">
+      <img src="https://i.postimg.cc/4nB595hg/ujjal5.jpg">
+      <p>happy moment </p>
+    </div>
+    <div class="certificate">
+      <img src="https://i.postimg.cc/r0Bv1vJg/ujjal6.jpg">
+      <p> Photo 2</p>
+    </div>
+    <div class="certificate">
+      <img src="https://i.postimg.cc/HjB2y28P/colorserene.jpg">
+      <p>its my art for somone   </p>
+    </div>
+    <div class="certificate">
+      <img src="https://i.postimg.cc/t1Z17xm7/jelinaa.jpg">
+      <p>my best friend Future AI/ML Expert | Computer Engineering Mindset | Jelina Bhatta”</p>
+    </div>
+    <div class="certificate">
+      <img src="https://i.postimg.cc/XXQ8C8BP/ujjal2.jpg">
+      <p>Personal Photo its me ujjal visting with mahakali river </p>
+    </div>
+    <div class="certificate">
+      <img src="https://i.postimg.cc/9zJp7pwn/ujjal3.jpg">
+      <p>enjoy with friends </p>
+    </div>
+    <div class="certificate">
+      <img src="https://i.postimg.cc/V5DRCR0T/ujjal4.jpg">
+      <p>Personal Photo MD resturent Eat. Enjoy. Repeat </p>
+    </div>
+  </div>
+</section>
+<!-- POETRY (PASSWORD PROTECTED) -->
+<section id="poetry" class="reveal">
+  <h2>My Poetry 🔒</h2>
+
+  <!-- Poetry Lock Box -->
+  <div class="about-card" id="poetry-lock">
+    <p>This poetry section is password protected</p><br>
+    <input type="password" id="poetryPassword" placeholder="Enter Poetry Password">
+    <br><br>
+    <button onclick="unlockPoetry()">Unlock Poetry</button>
+    <p id="poetry-error" style="color:rgb(7, 32, 173);margin-top:10px;"></p>
+  </div>
+
+  <!-- Hidden Poetry Content -->
+  <div id="poetry-content" style="display:none;max-width:900px;margin:auto;">
+    
+    <div class="about-card" style="margin-bottom:25px;">
+      <p>
+        उसमें और मुझमें बस इतना ही फ़र्क़ था,<br>
+        मैं हर साँस में उसका नाम लेता रहा,<br>
+        वो हर साँस में किसी और का ख़्याल रखा।<br><br>
+
+        मैंने उसके लिए स्टोरी डाली,<br>
+        उसने किसी और के लिए मुस्कान बाँटी,<br>
+        मैं वहीँ खड़ा रहा जहाँ वो दिखती थी,<br>
+        पर वो किसी और को ही महका पाती रही।<br><br>
+
+        प्यार हमने किया दिल से,<br>
+        उसने थोड़ी-सी रीत निभाई,<br>
+        किसने पूछा क्यों बदल गए,<br>
+        हमने कहा — आदत थी कोशिश न करने की,<br>
+        अब भी भुलाई नहीं जाती।
+      </p>
+    </div>
+
+    <div class="about-card" style="margin-bottom:25px;">
+      <p>
+        Kalam se likha nahi sakata udash dil ke apsane,<br>
+        mai sirf dil se chahata hu usaki,<br>
+        dil ki khuda jane।
+      </p>
+    </div>
+
+    <div class="about-card" style="margin-bottom:25px;">
+      <p>
+        भोलि मेरो नाम पछि जोडिने नाम तिम्रो भयो,<br>
+        तिमीलाई सधैँ शीतल चन्द्रमा घाम मेरो भयो।<br>
+        सानी तिमी मलाई चिया जस्तो प्रेम गरेर त हेर,<br>
+        बिस्कुट जसरी तिमीमा डुब्ने काम मेरो भयो। 🌺
+      </p>
+    </div>
+
+    <div class="about-card" style="margin-bottom:25px;">
+      <p>
+        dil ko nishana nahi banaya usane,<br>
+        pahile iss dil ko dil banaya usane,<br>
+        usako malum tha mai mohabbat ke naam pe kuch bhi kar sakta hu,<br>
+        isliye to apane haathon se zahar khilaya usane।
+      </p>
+    </div>
+
+    <div class="about-card" style="margin-bottom:25px;">
+      <p>
+        Bikhero jo zulfe to sarmaye badal,<br>
+        farishte bhi dekhe to ho jaye pagal।
+      </p>
+    </div>
+    <div class="about-card" style="margin-bottom:25px;">
+      <p>
+        तिमी मुस्कुराउँदा मेरो दिन उज्यालो हुन्छ,
+तिमी बिना यो मन अधुरो हुन्छ।<br>
+       शब्दमा भन्न सकिन माया कति गहिरो छ,
+तिमी मेराे मुटुको सबैभन्दा नजिकको छौ।<br>
+हजारौँ भिडमा पनि नजर तिमीमै रोकिन्छ,
+किनकि मेरो माया तिमीमै अड्किन्छ।<br>
+
+साथ सधैँ नहोला तर माया कहिल्यै कम हुँदैन,<br>
+मुटु धड्किन छोड्ला तर तिमीप्रतिको माया मर्दैन।
+      </p>
+    </div>
+    <div class="about-card" style="margin-bottom:25px;">
+      <p>
+       Even the moon looks dull,<br>
+when you smile brighter than its light
+      
+      </p>
+    </div>
+    <div class="about-card" style="margin-bottom:25px;">
+      <p>
+       I look at the moon every night,<br>
+but my heart is always looking for you.,
+       
+      </p>
+    </div>
+    <div class="about-card" style="margin-bottom:25px;">
+      <p>
+        I tell the moon about you every night,<br>
+because it’s the only one who stays<br>
+to listen to my silence.
+      </p>
+    </div>
+    <div class="about-card" style="margin-bottom:25px;">
+      <p>
+        Some nights the moon feels heavy,<br>
+because it carries all the words<br>
+I never got to say to you.
+      </p>
+    </div>
+
+    <div class="about-card" style="margin-bottom:25px;">
+      <p>
+        Wo ghadi aur wo lamhe sirf yaadein hi to reh jati hain,<br>
+        dusron se kya umeed rakhein janab,<br>
+        yahan to apno ko khush dekh kar bhi log dukhi ho jate hain।
+      </p>
+    </div>
+
+    <div class="about-card">
+      <p>
+        Tutne par koi aaye to phir aisa tute,<br>
+        jise dekhe har koi, dekh kar hi tute,<br>
+        apne bikhre tukdon ko sametey kab tak,<br>
+        ek hi insaan ke liye koi kitna tute — kab tak।
+      </p>
+    </div>
+
+  </div>
+</section>
+<!-- BOOKS & PDF -->
+<section id="books" class="reveal">
+  <h2>Books & PDF 📚</h2>
+
+  <!-- Password Box (optional) -->
+  <!-- <div class="about-card" id="books-lock">
+    <p>This section is password protected</p><br>
+    <input type="password" id="booksPassword" placeholder="Enter Password">
+    <br><br>
+    <button onclick="unlockBooks()">Unlock</button>
+    <p id="books-error" style="color:red;margin-top:10px;"></p>
+  </div> -->
+
+  <div class="certificates" id="books-content">
+    <div class="certificate">
+      <img src="https://via.placeholder.com/220x180.png?text=Book+1" alt="Book 1">
+      <p>Introduction to Python</p>
+      <a href="books/python.pdf" target="_blank">View PDF</a>
+    </div>
+    <div class="certificate">
+      <img src="https://via.placeholder.com/220x180.png?text=Book+1" alt="Book 2">
+      <p>tha way of infinite dimension</p>
+      <a href="books/python.pdf" target="_blank">View PDF</a>
+    </div>
+    <div class="certificate">
+      <img src="https://via.placeholder.com/220x180.png?text=Book+1" alt="Book 3">
+      <p>Hospital Managment System</p>
+      <a href="books/python.pdf" target="_blank">View PDF</a>
+    </div>
+    <div class="certificate">
+      <img src="https://via.placeholder.com/220x180.png?text=Book+1" alt="Book 4">
+      <p>Digitalclock project</p>
+      <a href="books/python.pdf" target="_blank">View PDF</a>
+    </div>
+    <div class="certificate">
+      <img src="https://via.placeholder.com/220x180.png?text=Book+1" alt="Book 5">
+      <p>upcomming</p>
+      <a href="books/python.pdf" target="_blank">View PDF</a>
+    </div>
+    <div class="certificate">
+      <img src="https://via.placeholder.com/220x180.png?text=Book+2" alt="Book 6">
+      <p>upcomming</p>
+      <a href="books/cybersecurity.pdf" target="_blank">View PDF</a>
+    </div>
+    <div class="certificate">
+      <img src="https://via.placeholder.com/220x180.png?text=Book+1" alt="Book 7">
+      <p>upcomming</p>
+      <a href="books/python.pdf" target="_blank">View PDF</a>
+    </div>
+    <div class="certificate">
+      <img src="https://via.placeholder.com/220x180.png?text=Book+1" alt="Book 8">
+      <p>upcomming</p>
+      <a href="books/python.pdf" target="_blank">View PDF</a>
+    </div>
+    <div class="certificate">
+      <img src="https://via.placeholder.com/220x180.png?text=Book+3" alt="Book 9">
+      <p>UI/UX Design Guide</p>
+      <a href="books/uiux.pdf" target="_blank">View PDF</a>
+      
+    </div>
+  </div>
+</section>
+
+
+
+<!-- CONTACT -->
+<section id="contact" class="reveal">
+  <h2>Get In Touch</h2>
+  <div class="contact">
+
+    <form id="contact-form">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+      <p id="form-status"></p>
+    </form>
+
+    <div class="socials">
+      <a href="mailto:ujjadsingh66@gmail.com">Email: ujjadsingh66@gmail.com</a>
+      <a href="https://github.com/ujjalmahata02" target="_blank">GitHub: ujjalmahata02</a>
+      <a href="https://linkedin.com/in/ujjalmahata02" target="_blank">LinkedIn: ujjalmahata02</a>
+      <a href="tel:+9779848788524">Phone: +977-9848788524</a>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+© 2026 Ujjal Singh Mahata | Portfolio
+</footer>
+
+<!-- SCROLL ANIMATION + EMAILJS + PASSWORD -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+/* SCROLL REVEAL */
+const reveals=document.querySelectorAll('.reveal');
+window.addEventListener('scroll',()=>{
+  reveals.forEach(el=>{
+    const wh=window.innerHeight;
+    const top=el.getBoundingClientRect().top;
+    if(top<wh-120){el.classList.add('active');}
+  });
+});
+
+/* EMAILJS INIT */
+(function(){emailjs.init("YOUR_PUBLIC_KEY");})();
+
+document.getElementById("contact-form").addEventListener("submit",function(e){
+  e.preventDefault();
+  emailjs.sendForm("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID",this).then(()=>{
+    document.getElementById("form-status").innerText="✅ Message sent successfully!";
+    this.reset();
+  },()=>{
+    document.getElementById("form-status").innerText="❌ Failed to send message.";
+  });
+});
+
+
+
+
+/* ===== PASSWORD PROTECTED GALLERY ===== */
+function unlockGallery(){
+  const password = document.getElementById("galleryPassword").value;
+  const correctPassword = "ujjal@123"; // 🔴 CHANGE PASSWORD HERE
+  if(password === correctPassword){
+    document.getElementById("gallery-content").style.display = "grid";
+    document.getElementById("lock-box").style.display = "none";
+  }else{
+    document.getElementById("error-msg").innerText = "❌ Wrong password!";
+  }
+}
+
+
+function unlockPoetry(){
+    const password = document.getElementById("poetryPassword").value;
+    const correctPassword = "poetry@123";
+    if(password === correctPassword){
+        document.getElementById("poetry-content").style.display = "block";
+        document.getElementById("poetry-lock").style.display = "none";
+    } else {
+        document.getElementById("poetry-error").innerText = "❌ Wrong password!";
+    }
+}
+
+function openLightbox(el){
+    const lb = document.getElementById("lightbox");
+    const lbImg = document.getElementById("lightbox-img");
+    lb.style.display = "flex";
+    lbImg.src = el.src;
+    lb.onclick = () => { lb.style.display = "none"; }
+}
+const themeToggleBtn = document.getElementById("theme-toggle");
+themeToggleBtn.addEventListener("click", () => {
+  const root = document.documentElement;
+
+  if(root.getAttribute("data-theme") === "light"){
+    // Switch to Dark
+    root.style.setProperty("--bg","#0b0f1a");
+    root.style.setProperty("--text","#ffffff");
+    root.style.setProperty("--card","#12172a");
+    root.style.setProperty("--accent","#4f7cff");
+    root.style.setProperty("--muted","#b8c1ec");
+
+    root.style.setProperty("--about-bg","#12172a");
+    root.style.setProperty("--skills-bg","#1a1f2e");
+    root.style.setProperty("--projects-bg","#0f1320");
+    root.style.setProperty("--hobbies-bg","#161b2a");
+    root.style.setProperty("--certificates-bg","#12172a");
+    root.style.setProperty("--private-bg","#1b1f30");
+    root.style.setProperty("--poetry-bg","#1e2635");
+    root.style.setProperty("--books-bg","#0f111f");
+
+    root.setAttribute("data-theme","dark");
+    themeToggleBtn.innerText = "🌙";
+
+  } else {
+    // Switch to Light
+    root.style.setProperty("--bg","#ffffff");
+    root.style.setProperty("--text","#000000");
+    root.style.setProperty("--card","#f0f0f0");
+    root.style.setProperty("--accent","#4f7cff");
+    root.style.setProperty("--muted","#555555");
+
+    root.style.setProperty("--about-bg","#fefefe");
+    root.style.setProperty("--skills-bg","#f5f5f5");
+    root.style.setProperty("--projects-bg","#f7f7f7");
+    root.style.setProperty("--hobbies-bg","#f0f0f0");
+    root.style.setProperty("--certificates-bg","#eaeaea");
+    root.style.setProperty("--private-bg","#f2f2f2");
+    root.style.setProperty("--poetry-bg","#f3f3f3");
+    root.style.setProperty("--books-bg","#f4f4f4");
+
+    root.setAttribute("data-theme","light");
+    themeToggleBtn.innerText = "🌞";
+  }
+});
+
+// ===== HERO TYPING ANIMATION =====
+const typingElement = document.querySelector(".typing-text");
+const phrases = [
+  "Cybersecurity Expert",
+  "Ethical Hacker",
+  "Computer Engineering Student"
+];
+
+let currentPhrase = 0;
+let currentChar = 0;
+
+function type() {
+  if (currentChar < phrases[currentPhrase].length) {
+    typingElement.textContent += phrases[currentPhrase][currentChar];
+    currentChar++;
+    setTimeout(type, 100);
+  } else {
+    setTimeout(erase, 2000);
+  }
+}
+
+function erase() {
+  if (currentChar > 0) {
+    typingElement.textContent = phrases[currentPhrase].substring(0, currentChar - 1);
+    currentChar--;
+    setTimeout(erase, 50);
+  } else {
+    currentPhrase++;
+    if (currentPhrase >= phrases.length) currentPhrase = 0;
+    setTimeout(type, 500);
+  }
+}
+
+// start typing after HTML load
+document.addEventListener("DOMContentLoaded", type);
+
+</script>
+
+</body>
+</html>
